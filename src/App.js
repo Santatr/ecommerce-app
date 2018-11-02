@@ -7,6 +7,8 @@ import './App.css';
 
 import Header from './components/common/Header';
 import Home from './components/common/Home';
+import ProductsContainer from './components/products/ProductsContainer';
+import ProductPage from './components/products/ProductPage';
 
 class App extends Component {
   render() {
