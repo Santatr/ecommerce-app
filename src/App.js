@@ -5,6 +5,9 @@ import { connect } from 'react-redux';
 import { Grid, Row } from 'react-bootstrap';
 import './App.css';
 
+import Header from './components/common/Header';
+import Home from './components/common/Home';
+
 class App extends Component {
   render() {
     return (
@@ -14,11 +17,9 @@ class App extends Component {
             <Header entries={this.props.entries} />
           </Row>
           <Route exact path="/" component={Home} />
-          <Route exact path="/story" component={Story} />
-          <Route exact path="/products" component={productsContainer} />
+          <Route exact path="/products" component={ProductsContainer} />
           <Route path="/product/:id" component={ProductPage} />
-          <Route exact path="/cart" component={cartContainer} />
-
+          <Route exact path="/cart" component={CartContainer} />
           <ProtectedRoute path={'/admin'} component={Admin} />
           <Route path={'/login'} component={Login} />
           <Route path={'/logout'} component={Logout} />
