@@ -74,7 +74,8 @@ class ProductPage extends Component {
         </Col>
         <Col md={6}>
           <h2 className="display">{this.props.product.name}</h2>
-          <h4><span className="price mr">{this.props.product.price}</span>Items in stock - {this.props.product.stock} </h4>
+          <h3 className="price">{this.props.product.price}</h3>
+          <h4>Items in stock - {this.props.product.stock} </h4>
           <p>{this.props.product.description}</p>
           <p className="mb">It is a long established fact that a reader will be distracted by the readable content of a
             page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
