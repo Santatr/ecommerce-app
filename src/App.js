@@ -10,6 +10,10 @@ import Home from './components/common/Home';
 import ProductsContainer from './components/products/ProductsContainer';
 import ProductPage from './components/products/ProductPage';
 import CartContainer from './components/cart/CartContainer';
+import ProtectedRoute from './components/admin/ProtectedRoute';
+import Admin from './components/admin/Admin';
+import Login from './components/admin/Login';
+import Logout from './components/admin/Logout';
 
 class App extends Component {
   render() {
