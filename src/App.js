@@ -1,28 +1,38 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { BrowserRouter, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+import { Grid, Row } from 'react-bootstrap';
 import './App.css';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <BrowserRouter>
+        <Grid>
+          <Row>
+            <Header entries={this.props.entries} />
+          </Row>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/story" component={Story} />
+          <Route exact path="/products" component={productsContainer} />
+          <Route path="/product/:id" component={ProductPage} />
+          <Route exact path="/cart" component={cartContainer} />
+
+          <ProtectedRoute path={'/admin'} component={Admin} />
+          <Route path={'/login'} component={Login} />
+          <Route path={'/logout'} component={Logout} />
+        </Grid>
+      </BrowserRouter>
     );
   }
 }
 
-export default App;
+function mapStateToProps(state, props) {
+  return {
+    products: state.productsReducer,
+    entries: state.cartReducer.length,
+  }
+}
+
+export default connect(mapStateToProps)(App);
