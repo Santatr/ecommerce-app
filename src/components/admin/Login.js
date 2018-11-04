@@ -34,7 +34,7 @@ class Login extends Component {
     }
 
     return (
-      <div style={{ width: 210 }}>
+      <div className="login-box">
         <h1>Sign In</h1>
 
         <Form horizontal={true}>
