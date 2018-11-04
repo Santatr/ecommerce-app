@@ -14,6 +14,7 @@ import ProtectedRoute from './components/admin/ProtectedRoute';
 import Admin from './components/admin/Admin';
 import Login from './components/admin/Login';
 import Logout from './components/admin/Logout';
+import Checkout from './components/checkout/Checkout';
 
 class App extends Component {
   render() {
@@ -28,8 +29,9 @@ class App extends Component {
           <Route path="/product/:id" component={ProductPage} />
           <Route exact path="/cart" component={CartContainer} />
           <ProtectedRoute path={'/admin'} component={Admin} />
-          <Route path={'/login'} component={Login} />
-          <Route path={'/logout'} component={Logout} />
+          <Route path="/login" component={Login} />
+          <Route path="/logout" component={Logout} />
+          <Route path="/checkout" component={Checkout} />
         </Grid>
       </BrowserRouter>
     );
