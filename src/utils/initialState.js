@@ -1,15 +1,5 @@
 export const products = [
   {
-    name: 'Hair Moisture Cream',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.',
-    photo: 'https://preview.ibb.co/dR4r6V/photo1.jpg',
-    price: '11.80',
-    stars: 8,
-    id: '0001',
-    types: ['Coconut', 'Olive oil', 'Keratin'],
-    stock: 50
-  },
-  {
     name: 'Cocooil Body',
     description: 'Various versions have evolved over the years, sometimes by accident, sometimes on purpose.',
     photo: 'https://preview.ibb.co/iWLW6V/photo2.jpg',
@@ -68,5 +58,15 @@ export const products = [
     id: '0007',
     types: ['Fruit Mix', 'Flower Story'],
     stock: 15
-  }
+  },
+  {
+    name: 'Hair Moisture Cream',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.',
+    photo: 'https://preview.ibb.co/dR4r6V/photo1.jpg',
+    price: '11.80',
+    stars: 8,
+    id: '0001',
+    types: ['Coconut', 'Olive oil', 'Keratin'],
+    stock: 50
+  },
 ];
