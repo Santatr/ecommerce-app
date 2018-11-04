@@ -21,11 +21,6 @@
   color: #0D7834;
 }
 
-.app-logo {
-  width: 258px;
-  height: 68px;
-}
-
 /* Products */
 
 .thumbnail {
@@ -75,6 +70,10 @@
 
 h3 {
   margin-top: 8px;
+}
+
+h2 {
+  margin-top: 0;
 }
 
 /* Utils */
@@ -184,4 +183,17 @@ table .btn {
   position: absolute;
   right: 12px;
   top: 4px;
+}
+
+.login-box {
+  width: 250px;
+  display: block;
+  margin: 16px auto;
+}
+
+.panel-default>.panel-heading {
+  color: #fff;
+  background: #383838;
+  text-transform: uppercase;
+  text-align: center;
 }
