@@ -6,7 +6,6 @@ const Cart = (props) => {
   return (
     <Col md={8}>
       <h2 className="mb">Shopping Bag - {props.noOfItems} items</h2>
-
       <Table hover>
         <thead>
           <tr>
@@ -47,7 +46,7 @@ const Cart = (props) => {
           </tr>
         </tfoot>
       </Table>
-      <Button bsSize="large" bsStyle="success">Procced to Checkout</Button>
+      <Button href="/checkout" bsSize="large" bsStyle="success">Procced to Checkout</Button>
     </Col>
   );
 }
