@@ -4,9 +4,12 @@ import App from './App';
 
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import logger from 'redux-logger';
+import { createLogger } from 'redux-logger';
 
 import rootReducer from './reducers/rootReducer';
+const logger = createLogger({
+  collapsed: true
+});
 
 const store = createStore(rootReducer, applyMiddleware(logger));
 
