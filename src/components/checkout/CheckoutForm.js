@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Col, Form, FormGroup, FormControl, ControlLabel, Radio } from 'react-bootstrap';
+import { Col, Form, FormGroup, FormControl, ControlLabel, Radio, Button } from 'react-bootstrap';
+import { months } from '../../utils/constants';
 
 class CheckoutForm extends Component {
   constructor(props) {
@@ -14,11 +15,12 @@ class CheckoutForm extends Component {
       address: '',
       shippingMethod: 'standard',
       cardNumber: '',
-      expiryDay: '',
+      expiryYear: '',
       expiryMonth: '',
       cvv: ''
     }
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleInputChange(e) {
@@ -28,10 +30,15 @@ class CheckoutForm extends Component {
     });
   }
 
+  handleSubmit(e) {
+    e.preventDefault();
+    const payload = {...this.state};
+    console.log(payload);
+  }
+
   render() {
-    console.log(this.state)
     return (
-      <Form horizontal>
+      <Form horizontal onSubmit={this.handleSubmit}>
         <h4>Billing Address</h4>
         <FormGroup>
           <Col componentClass={ControlLabel} md={2}>
@@ -43,7 +50,7 @@ class CheckoutForm extends Component {
               name="firstName" 
               value={this.state.firstName} 
               onChange={this.handleInputChange} 
-              onBlur={this.handleBlur} 
+              onBlur={this.props.handleBlur} 
             />
           </Col>
           <Col componentClass={ControlLabel} md={2}>
@@ -55,7 +62,7 @@ class CheckoutForm extends Component {
               name="lastName"
               value={this.state.lastName}
               onChange={this.handleInputChange}
-              onBlur={this.handleBlur} 
+              onBlur={this.props.handleBlur} 
             />
           </Col>
         </FormGroup>
@@ -70,7 +77,7 @@ class CheckoutForm extends Component {
               name="email"
               value={this.state.email}
               onChange={this.handleInputChange}
-              onBlur={this.handleBlur}
+              onBlur={this.props.handleBlur}
             />
           </Col>
           <Col componentClass={ControlLabel} md={2}>
@@ -82,7 +89,7 @@ class CheckoutForm extends Component {
               name="telephone"
               value={this.state.telephone}
               onChange={this.handleInputChange}
-              onBlur={this.handleBlur}
+              onBlur={this.props.handleBlur}
             />
           </Col>
         </FormGroup>
@@ -97,7 +104,7 @@ class CheckoutForm extends Component {
               name="city"
               value={this.state.city}
               onChange={this.handleInputChange}
-              onBlur={this.handleBlur} 
+              onBlur={this.props.handleBlur} 
             />
           </Col>
           <Col componentClass={ControlLabel} md={2}>
@@ -109,7 +116,7 @@ class CheckoutForm extends Component {
               name="country"
               value={this.state.country}
               onChange={this.handleInputChange}
-              onBlur={this.handleBlur} 
+              onBlur={this.props.handleBlur} 
             />
           </Col>
         </FormGroup>
@@ -124,7 +131,7 @@ class CheckoutForm extends Component {
               name="address"
               value={this.state.address}
               onChange={this.handleInputChange}
-              onBlur={this.handleBlur}
+              onBlur={this.props.handleBlur}
             />
           </Col>
         </FormGroup>
@@ -137,15 +144,22 @@ class CheckoutForm extends Component {
           </Col>
           <Col md={8}>
             <FormGroup>
-              <FormControl name="shippingMethod" checked={this.state.shippingMethod}>
-                <input type="radio" value="standard" />
-                <Radio name="shippingMethod">
-                  Standard (1-4 weeks, no tracking)
+              <Radio 
+                name="shippingMethod" 
+                value="standard" 
+                checked={this.state.shippingMethod === 'standard'}
+                onChange={this.handleInputChange}
+              >
+                Standard (1-4 weeks, no tracking)
               </Radio>{' '}
-                <Radio name="shippingMethod" value="express">
-                  Express (2-8 days, tracking)
-              </Radio>{' '}
-              </FormControl>            
+              <Radio 
+                name="shippingMethod" 
+                value="express" 
+                checked={this.state.shippingMethod === 'express'}
+                onChange={this.handleInputChange}
+              >
+                Express (2-8 days, tracking)
+              </Radio>{' '}        
             </FormGroup>
           </Col>
         </FormGroup>
@@ -158,13 +172,13 @@ class CheckoutForm extends Component {
           </Col>
           <Col md={5}>
             <FormControl 
-              type="number"
-              min="16"
-              max="18"
+              type="text"
+              pattern="/^[0-9]{16}$/"
               name="cardNumber"
+              title="Valid card number 4444 4444 4444 4444"
               value={this.state.cardNumber}
               onChange={this.handleInputChange}
-              onBlur={this.handleBlur}
+              onBlur={this.props.handleBlur}
             />
           </Col>
         </FormGroup>
@@ -173,19 +187,47 @@ class CheckoutForm extends Component {
           <Col componentClass={ControlLabel} md={2}>
             Expiry Date
           </Col>
-          <Col md={2}>
-            <FormControl type="email" />
-          </Col>
           <Col md={3}>
-            <FormControl type="email" />
+            <FormControl
+                componentClass="select"
+                placeholder="Month"
+                name="expiryMonth"
+                value={this.state.expiryMonth}
+                onChange={this.handleInputChange}
+              >
+              {months.map((month, index) => <option value={month} key={index}>{month}</option>)}
+
+            </FormControl>
+          </Col>
+          
+          <Col md={2}>
+            <FormControl 
+              type="number"
+              name="expiryYear"
+              placeholder="Year" 
+              min="2018" 
+              max="2050"
+              maxLength="4"
+              value={this.state.expiryYear}
+              onChange={this.handleInputChange}
+              onBlur={this.props.handleBlur}
+            />
           </Col>
           <Col componentClass={ControlLabel} md={2}>
             CVV
           </Col>
           <Col md={2}>
-            <FormControl type="text" />
+            <FormControl 
+              type="number"
+              name="cvv"
+              maxLength="3"
+              value={this.state.cvv}
+              onChange={this.handleInputChange}
+              onBlur={this.props.handleBlur}
+            />
           </Col>
         </FormGroup>
+        <Button bsStyle="success" bsSize="large" type="submit">Place Order</Button>
       </Form>
     );
   }

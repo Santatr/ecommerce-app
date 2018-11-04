@@ -9,16 +9,13 @@ class Checkout extends Component {
     this.state = {
       firstName: '',
       lastName: '',
-      progress: 10
+      progress: 12
     };
     this.handleBlur = this.handleBlur.bind(this);
   }
 
-
-  
-
   handleBlur(e) {
-    this.setState(prevState => ({ progress: prevState.progress + 10 }))
+    this.setState(prevState => ({ progress: prevState.progress + 8 }))
   }
 
   render() {
@@ -27,7 +24,7 @@ class Checkout extends Component {
         <Col md={7}>
           <h2>Checkout</h2>
           <ProgressBar bsStyle="success" now={this.state.progress} />
-          <CheckoutForm />
+          <CheckoutForm handleBlur={this.handleBlur} />
         </Col>
         <Col md={1}></Col>
         <Col md={4}>
